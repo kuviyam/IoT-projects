@@ -1,0 +1,65 @@
+<!--Author: chandrasekar Perumal-->
+<!--credits to keithwhor for providing js file https://keithwhor.github.io/audiosynth/-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Piano</title>
+
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<script src="js/audiosynth.js"></script>
+	<script src="js/playKeyboard.js"></script>
+	<script src="js/jquery-1.7.2.min.js"></script>
+</head>
+
+<body>
+	<h1 class="title">Kuviyam Piano</h1>
+
+	<div class="keyboard-options">
+		<select id="sound" hidden>
+			<option value="0" selected>Keyboard</option>
+			<option value="1">Organ</option>
+			<option value="2">Acoustic Guitar</option>
+			<option value="3">EDM, bro!</option>
+		</select>
+
+		<input type="radio" id="radio1" name="radios" value="0" checked>
+		<label for="radio1"><img src="img/piano.png" alt="Piano" height="42" width="42"> </label>
+		<input type="radio" id="radio2" name="radios" value="1">
+		<label for="radio2"><img src="img/organ.png" alt="Organ" height="42" width="42"></label>
+		<input type="radio" id="radio3" name="radios" value="2">
+		<label for="radio3"><img src="img/guitar.png" alt="Guitar" height="42" width="42"></label>
+		<input type="radio" id="radio4" name="radios" value="3">
+		<label for="radio4"><img src="img/edm.png" alt="EDM" height="42" width="42"></label>
+
+		<div ID="keyboard" class="keyboard-holder"></div>
+	</div>
+
+	<script type="text/javascript">playKeyboard()</script>
+
+	<script type="text/javascript">
+	$(document).ready( function() {
+		$("input[name='radios']").on('change',function() {
+
+			if($(this).is(':checked') && $(this).val() == '0')
+			{
+				$('#sound').val("0");
+			}
+			else if($(this).is(':checked') && $(this).val() == '1')
+			{
+				$('#sound').val("1");
+			}
+			else if($(this).is(':checked') && $(this).val() == '2')
+			{
+				$('#sound').val("2");
+			}
+			else if($(this).is(':checked') && $(this).val() == '3')
+			{
+				$('#sound').val("3");
+			}
+			});
+		});
+	</script>
+</body>
+</html>
