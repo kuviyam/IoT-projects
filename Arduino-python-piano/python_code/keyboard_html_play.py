@@ -77,7 +77,6 @@ def html_play(state, note):
     if key == 'right':
         key = Key.right
 
-
     if state == 'press':
         keyboard.press(key)
     elif state == 'release':
@@ -126,7 +125,7 @@ def main():
         try:
             reading = ser.readline().decode('utf-8').rstrip().upper()
             if len(reading) == 7:
-                zero = str("{0:04b}".format(int(reading[0], 16)))  # SWITCH a3 a#3 b3
+                zero = str("{0:04b}".format(int(reading[0], 16)))  # Pushswitch a3 a#3 b3
                 one = str("{0:04b}".format(int(reading[1], 16)))  # c4 c#4 d4 d#4
                 two = str("{0:04b}".format(int(reading[2], 16)))  # e4 f4 f#4 g4
                 three = str("{0:04b}".format(int(reading[3], 16)))  # g#4 a4 a#4 b4
