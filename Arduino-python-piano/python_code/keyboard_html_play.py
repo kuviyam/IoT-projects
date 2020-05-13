@@ -2,6 +2,7 @@
 # this code reads 7 digit hex values from serial port and plays corresponding notes
 
 import os
+import time
 import serial
 from pynput.keyboard import Key, Controller
 
@@ -13,6 +14,11 @@ keyboard = Controller()
 keystate0 = [False] * 12
 keystate1 = [False] * 12
 keystate2 = [False] * 12
+
+debounce_period = 0.15
+debounce_st_0 = [time.time()] * 12
+debounce_st_1 = [time.time()] * 12
+debounce_st_2 = [time.time()] * 12
 
 oct_cur = 0
 oct_state = False
@@ -78,6 +84,7 @@ def html_play(state, note):
         key = Key.right
 
     if state == 'press':
+        print(note)
         keyboard.press(key)
     elif state == 'release':
         keyboard.release(key)
@@ -91,30 +98,36 @@ def play(octave_select, zero, one, two, three, four, five, six):
     for i in range(0, 12):
         if oct0[i] == '0' and keystate0[i] == False:
             keystate0[i] = True
+            debounce_st_0[i] = time.time()
             html_play('press', note[i] + str(int(octave_select) - 1))
         elif oct0[i] == '1'  and keystate0[i] == True:
-            keystate0[i] = False
-            html_play('release', note[i] + str(int(octave_select) - 1))
+            if (time.time() - debounce_st_0[i]) > debounce_period:
+                keystate0[i] = False
+                html_play('release', note[i] + str(int(octave_select) - 1))
 
 
     oct1 = one + two + three
     for i in range(0, 12):
         if oct1[i] == '0' and keystate1[i] == False:
             keystate1[i] = True
+            debounce_st_1[i] = time.time()
             html_play('press', note[i] + octave_select)
         elif oct1[i] == '1' and keystate1[i] == True:
-            keystate1[i] = False
-            html_play('release', note[i] + octave_select)
+            if (time.time() - debounce_st_1[i]) > debounce_period:
+                keystate1[i] = False
+                html_play('release', note[i] + octave_select)
 
 
     oct2 = four + five + six
     for i in range(0, 12):
         if oct2[i] == '0' and keystate2[i] == False:
             keystate2[i] = True
+            debounce_st_2[i] = time.time()
             html_play('press', note[i] + str(int(octave_select) + 1))
         elif oct2[i] == '1' and keystate2[i] == True:
-            keystate2[i] = False
-            html_play('release', note[i] + str(int(octave_select) + 1))
+            if (time.time() - debounce_st_2[i]) > debounce_period:
+                keystate2[i] = False
+                html_play('release', note[i] + str(int(octave_select) + 1))
 
 
 
