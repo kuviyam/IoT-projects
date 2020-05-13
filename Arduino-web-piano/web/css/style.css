@@ -1,0 +1,77 @@
+body {
+    font-family: calibri;
+   }
+   input[type=radio], input[type=checkbox] {
+           display:none;
+       }
+   
+   input[type=radio] + label, input[type=checkbox] + label {
+           display:inline-block;
+           margin:-2px;
+           padding: 4px 12px;
+           margin-bottom: 0;
+           font-size: 14px;
+           line-height: 20px;
+           color: #333;
+           text-align: center;
+           text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+           vertical-align: middle;
+           cursor: pointer;
+           background-color: #f5f5f5;
+           background-image: -moz-linear-gradient(top,#fff,#e6e6e6);
+           background-image: -webkit-gradient(linear,0 0,0 100%,from(#fff),to(#e6e6e6));
+           background-image: -webkit-linear-gradient(top,#fff,#e6e6e6);
+           background-image: -o-linear-gradient(top,#fff,#e6e6e6);
+           background-image: linear-gradient(to bottom,#fff,#e6e6e6);
+           background-repeat: repeat-x;
+           border: 1px solid #ccc;
+           border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+           border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+           border-bottom-color: #b3b3b3;
+           filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff',endColorstr='#ffe6e6e6',GradientType=0);
+           filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+           -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+           -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+           box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+       }
+   
+        input[type=radio]:checked + label, input[type=checkbox]:checked + label{
+              background-image: none;
+           outline: 0;
+           -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+           -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+           box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+               background-color:#7164e6;
+       }
+
+
+
+
+     body { font-family: Georgia; text-align: center;}
+ 
+     .banner {width: 1200px; height: 340px; object-fit: cover; object-position: 0px -90px;}	
+ 
+       .title {font-size: 40px;}
+ 
+       .content {background-color: #FAD7A0; margin: 20px; padding: 30px; border-style: double; border-width: 5px; font-size: 18px; text-align: left; width: 1200px; display: inline-block; }
+ 
+     .key { position: absolute; font-family: Helvetica; font-weight: 100; font-size: 12px;
+         border: 1px solid rgba(32,32,32,0.2);
+         border-radius: 0px 0px 5px 5px;
+         cursor:pointer;
+         box-shadow: 0px 5px 1px rgba(32,32,32,0.2);
+         -webkit-transition: margin 0.05s ease, background-color 0.05s ease, box-shadow 0.05s ease; }
+     .key:hover { background-color: #71DB90; }
+         
+     .key .label { position: absolute; bottom: 15px; text-align: center; left: 0px; right: 0px; }
+ 
+     .keyLabel {font-weight: 900; text-shadow: 0px -1px 5px #EBF508; font-size: 15px;}
+ 
+     .black { background-color: rgb(32,32,32); color: #ffffff; z-index: 1; text-shadow: 0px -1px 1px #FF0000; }
+     
+     .white { background-color: #F2F2DE; color: #3008F5; z-index: 0; text-shadow: 0px 1px 1px #08E8F5; }
+     
+     .keyboard-holder { margin: 30px auto; height: 200px; position:relative; user-select:none; -webkit-user-select:none;-moz-user-select:none;-o-user-select:none; }
+ 
+     /*.playing {background-color: #1BC0EA;}*/
+ 
