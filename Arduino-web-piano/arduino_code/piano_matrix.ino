@@ -15,12 +15,21 @@ int K_COL_D = 10;
 int K_COL_E = 9; 
 int K_COL_F = 8;  
 
-int JOY_X = A8;
-int JOY_Y = A9; 
+
+int JOY_X = A0;
+int JOY_Y = A1;
+int KNOB_1 = A2;
+int SLIDE_1 = A3;
+int SLIDE_2 = A4;
+int SLIDE_3 = A5; 
 
 
 int joy_x_val = 0;
 int joy_y_val = 0;
+int knob_1_val = 0;
+int slide_1_value = 0;
+int slide_2_value = 0;
+int slide_3_value = 0;
 
 
 struct DATARAW
@@ -118,6 +127,7 @@ String getkeys(){
 
   // Scan 4th row
   digitalWrite(K_ROW_C, HIGH);
+  delay(2);
   digitalWrite(K_ROW_D, LOW);
   oct_1b.set.b1 = digitalRead(K_COL_A);
   oct_1b.set.b0 = digitalRead(K_COL_B);
@@ -128,6 +138,7 @@ String getkeys(){
 
   // Scan 5th row
   digitalWrite(K_ROW_D, HIGH);
+  delay(2);
   digitalWrite(K_ROW_E, LOW);  
   oct_2a.set.b3 = digitalRead(K_COL_A);
   oct_2a.set.b2 = digitalRead(K_COL_B);
@@ -138,6 +149,7 @@ String getkeys(){
 
   // Scan 6th row
   digitalWrite(K_ROW_E, HIGH);
+  delay(2);
   digitalWrite(K_ROW_F, LOW);
   oct_2b.set.b1 = digitalRead(K_COL_A);
   oct_2b.set.b0 = digitalRead(K_COL_B);
@@ -148,6 +160,7 @@ String getkeys(){
 
   // Scan 7th row
   digitalWrite(K_ROW_F, HIGH);
+  delay(2);
   digitalWrite(K_ROW_G, LOW);
   swi_0a.set.b3 = digitalRead(K_COL_A);
   swi_0a.set.b2 = digitalRead(K_COL_B);
@@ -164,16 +177,22 @@ String getkeys(){
   switches = String(swi_0a.value, HEX)+String(swi_0b.value, HEX);
 
   return octave0+octave1+octave2+switches;
+
 }
 
-String getjoy(){
-  joy_x_val = analogRead(JOY_X);
-  joy_y_val = analogRead(JOY_Y);
-    
-  return String(joy_x_val);
+String getanalog(){
+  char analog_values[12] = {0};
+  joy_x_val = analogRead(JOY_X)/4;
+  joy_y_val = analogRead(JOY_Y)/4;
+  knob_1_val = analogRead(KNOB_1)/4;
+  slide_1_value = analogRead(SLIDE_1)/4;
+  slide_2_value = analogRead(SLIDE_2)/4;
+  slide_3_value = analogRead(SLIDE_3)/4; 
+  sprintf(analog_values, "%02x%02x%02x%02x%02x%02x",joy_x_val,joy_y_val,knob_1_val,slide_1_value,slide_2_value,slide_3_value);
+  return analog_values;
 }
 
 void loop() {
-  Serial.println(getkeys());
+  Serial.println(getkeys()+getanalog());
   delay(50);
 }
